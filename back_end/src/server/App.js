@@ -6,7 +6,7 @@ const logger = require('koa-logger')
 const bancoRoute = require('./controller/banco/Banco.controller')
 const agenciaRoute = require('./controller/agencias/Agencias.controller')
 const cors = require('koa-cors');
-const bodyParser = require('koa-bodyparse')
+const bodyParser = require('koa-bodyparser')
 
 
 const port = process.env.PORT || '3000'
