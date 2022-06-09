@@ -121,13 +121,5 @@ function verificarId(id,data)
     return false
 }
 
-function bancoModal(banco)
-{
-
-    return (
-        <>
-
-        </>)
-}
 
 export default Bancos;
