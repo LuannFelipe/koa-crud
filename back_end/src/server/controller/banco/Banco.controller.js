@@ -8,7 +8,20 @@ const prisma = new PrismaClient()
 
 
 routes.get("/api/v1/bancos", async (ctx) => {
-    const bancos = await prisma.banco.findMany()
+    let bancos
+
+    const query = ctx.query
+    console.log(query)
+
+    if(query.inicio != null && query.total != null)
+    {
+        bancos = await prisma.banco.findMany({
+            skip: parseInt(query.inicio),
+            take: parseInt(query.total)
+        })
+    }else {
+        bancos = await prisma.banco.findMany()
+    }
     ctx.body = bancos
 })
 
