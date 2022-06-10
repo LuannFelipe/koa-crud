@@ -57,7 +57,7 @@ const Agencia= ({ data: agencias, bancos }) => {
                                     }}/>
                                     <input type="button" value="remover" className="btn bg-secondary bg-opacity-25" onClick={() => {
                                         deletar(agencia.id)
-                                        router.reload(window.location.pathname)
+                                        //router.reload(window.location.pathname)
                                     }}/></td>
                             </tr>
                         );
@@ -81,10 +81,12 @@ function nomeBanco( banco , id)
 
 async function deletar(id)
 {
+    console.log("DASdASDDS")
     const res = await fetch(`http://localhost:3000/api/v1/deletarAgencia/${id}`,{
         method: 'delete'
     })
     const resposta = await res.json()
+
 }
 
 function pegarId(){

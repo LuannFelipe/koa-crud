@@ -24,7 +24,7 @@ const Banco = ({ banco }) => {
                       }}>voltar</button>
                      <button type="button" className="btn bg-black text-white w-auto ms-2"  onClick={() => {
                          deletar(banco.id)
-                     route.push("/bancos")
+                         route.push("/bancos")
                       }}>Remover</button>
                   </footer>
               </div>
