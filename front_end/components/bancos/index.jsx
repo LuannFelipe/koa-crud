@@ -52,34 +52,9 @@ const Bancos= ({ data }) => {
                                 <td className="text-center">{banco.numero === '' ? <>vazio</> : banco.numero}</td>
                                 <td className="text-center">{banco.ispd == null ? <>vazio</> : banco.ispd}</td>
                                 <td key={banco.id}>
-                                    <button type="button" className="btn bg-opacity-25 bg-secondary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Ver
-                                    </button>
-
-                                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
-                                         aria-hidden="true" key={banco.id}>
-                                        <div className="modal-dialog">
-                                            <div className="modal-content">
-                                                <div className="modal-header">
-                                                    <h5 className="modal-title" id="exampleModalLabel">{banco.nome} <Image src="/img/diamond.png" width={24} height={24} layout={"fixed"}/> </h5>
-                                                    <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div className="modal-body">
-                                                    <p><strong>Id: </strong>{banco.id}</p>
-                                                    <p><strong>Nome: </strong>{banco.nome}</p>
-                                                    <p><strong>Numero: </strong>{banco.numero === '' ? <>vazio</> : banco.numero}</p>
-                                                    <p><strong>Ispd: </strong>{banco.ispd == null ? <>vazio</> : banco.ispd}</p>
-                                                </div>
-                                                <div className="modal-footer">
-                                                    <button type="button" className="btn bg-black text-white" data-bs-dismiss="modal">Fechar</button>
-                                                    <button type="button" className="btn bg-black text-white w-auto" data-bs-dismiss="modal" onClick={() => {
-                                                        console.log(banco.id)
-                                                    }}>Remover</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="button" value="ver" className="btn bg-opacity-25 bg-secondary me-2" onClick={() => {
+                                        router.push(`/banco/${banco.id}`)
+                                    }}/>
                                     <input type="button" value="remover" className="btn bg-opacity-25 bg-secondary" onClick={() => {
                                         deletar(banco.id)
 

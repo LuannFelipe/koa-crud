@@ -51,7 +51,11 @@ const Agencia= ({ data: agencias, bancos }) => {
                                 <td className="text-center">{agencia.fone1 == null ? <>vazio</> : agencia.fone1}</td>
                                 <td className="text-center">{agencia.endereco}</td>
                                 <td className="text-center">{agencia.agencia}</td>
-                                <td key={agencia.id}><input type="button" value="remover" className="btn bg-secondary bg-opacity-25" onClick={() => {
+                                <td key={agencia.id}>
+                                    <input type="button" value="ver" className="btn bg-opacity-25 bg-secondary me-2" onClick={() => {
+                                        router.push(`/agencia/${agencia.id}`)
+                                    }}/>
+                                    <input type="button" value="remover" className="btn bg-secondary bg-opacity-25" onClick={() => {
                                         deletar(agencia.id)
                                         router.reload(window.location.pathname)
                                     }}/></td>

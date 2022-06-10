@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 
 const Banco = ({ banco }) => {
+    const route = useRouter()
     return (
         <>
           <div className="d-flex justify-content-center">
@@ -17,10 +19,13 @@ const Banco = ({ banco }) => {
                       <p><strong>Ispd: </strong>{banco.ispd == null ? <>vazio</> : banco.ispd}</p>
                   </div>
                   <footer className="d-flex justify-content-end border-top pt-3">
-                      <Link href="/bancos"><button type="button" className="btn bg-black text-white w-auto" data-bs-dismiss="modal">voltar</button></Link>
-                      <Link href="/bancos"><button type="button" className="btn bg-black text-white w-auto ms-2"  onClick={() => {
-                          deletar(banco.id)
-                      }}>Remover</button></Link>
+                      <button type="button" className="btn bg-black text-white" data-bs-dismiss="modal" onClick={() => {
+                          route.back()
+                      }}>voltar</button>
+                     <button type="button" className="btn bg-black text-white w-auto ms-2"  onClick={() => {
+                         deletar(banco.id)
+                     route.push("/bancos")
+                      }}>Remover</button>
                   </footer>
               </div>
           </div>
