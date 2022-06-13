@@ -1,18 +1,39 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import Image from "next/image";
+import {useEffect, useState} from "react";
+import useBancos from "../hooks/bancos/usaBancos";
+import {wait} from "next/dist/build/output/log";
+import {usePagination} from "react-use-pagination";
 
-const Bancos= ({ data }) => {
+const Bancos= ({ data}) => {
+    const { feachtBancos, bancos } = useBancos(20)
+
+    useEffect(() => {
+       feachtBancos(1)
+    },[])
+
+   const [pagina, setPagina] = useState(1)
+
+    useEffect(()=>{
+        if(pagina <= 0)
+            setPagina(1)
+        feachtBancos(pagina)
+    },[pagina])
+
     const router = useRouter()
-    return (
+    return(
         <>
-
             <div>
                 <div>
                     <h1 className="text-center mb-5 text-secondary">Bancos</h1>
                 </div>
                 <div className="d-flex justify-content-between mb-2">
                     <Link href='/banco/cadastrar'><input type="button" value="adicionar" className="btn bg-opacity-25 bg-secondary"/></Link>
+                    <div className="d-flex">
+                        <input type="button" value="<" onClick={()=>setPagina(pagina-1)} className="border-0 bg-transparent"/>
+                        <div className="mx-3">{pagina}</div>
+                        <input type="button" value=">" onClick={()=>setPagina(pagina+1)} className="border-0 bg-transparent"/>
+                    </div>
                     <div>
 
                         <label>procurar: <input type="text" placeholder="id" id="id" className="mx-1"/></label>
@@ -32,7 +53,7 @@ const Bancos= ({ data }) => {
 
 
             <div>
-                <table className="table table-striped table-sm caption-top ">
+                <table className="table table-striped table-sm caption-top table-responsive">
                     <caption>lista de bancos</caption>
                     <thead className="table-dark" >
                     <tr>
@@ -44,7 +65,7 @@ const Bancos= ({ data }) => {
                     </tr>
                     </thead>
                     <tbody className="bg-secondary bg-opacity-25">
-                    {data.map((banco) => {
+                    {bancos.map((banco) => {
                         return (
                             <tr key={banco.id}>
                                 <td className="text-center">{banco.id}</td>
@@ -55,10 +76,12 @@ const Bancos= ({ data }) => {
                                     <input type="button" value="ver" className="btn bg-opacity-25 bg-secondary me-2" onClick={() => {
                                         router.push(`/banco/${banco.id}`)
                                     }}/>
-                                    <input type="button" value="remover" className="btn bg-opacity-25 bg-secondary" onClick={() => {
+                                    <input type="button" value="remover" className="btn bg-opacity-25 bg-secondary" onClick={ () => {
+
                                         deletar(banco.id)
 
-                                        router.reload(window.location.pathname)
+
+                                        //router.reload(window.location.pathname)
                                     }}/>
 
                                 </td>
@@ -68,9 +91,13 @@ const Bancos= ({ data }) => {
                     </tbody>
                 </table>
             </div>
+
         </>
+
     );
 };
+
+
 
 async function deletar(id)
 {

@@ -7211,6 +7211,11 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
+"react-use-pagination@^2.0.1":
+  "integrity" "sha512-bo7vI2oZ/+PJJozN7DLWPkewrULLoHb8a6WO3dGudJfEKnj8BVZVbJPkvn5jtydhJ5xi0t0W7xI06XlWUe8Jbw=="
+  "resolved" "https://registry.npmjs.org/react-use-pagination/-/react-use-pagination-2.0.1.tgz"
+  "version" "2.0.1"
+
 "react-widgets@^5.8.4":
   "integrity" "sha512-WcA/K+eVKAW+vyeQKdRqo2gmnLqHbNSDDKQ84j/wyhbautCRrGbjWAmKb4+tI3OzUgCAAEJDZ75azAY2WoKWYQ=="
   "resolved" "https://registry.npmjs.org/react-widgets/-/react-widgets-5.8.4.tgz"

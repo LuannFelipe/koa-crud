@@ -5,7 +5,7 @@ export default function Header()
 {
     return (
         <header className="bg-dark mb-5 p-1 sticky-top">
-            <nav className="navbar mx-5">
+            <nav className="navbar navb mx-5">
                 <Link href="/">
                     <a className="text-white">
                         <Image src="/img/logo.png" alt="logo" width={26} height={26} layout="fixed"/>

@@ -21,6 +21,7 @@
     "react-countup": "^6.2.0",
     "react-dom": "18.1.0",
     "react-select": "^5.3.2",
+    "react-use-pagination": "^2.0.1",
     "react-widgets": "^5.8.4",
     "reactstrap": "^9.0.2",
     "table-react": "^1.0.9"
