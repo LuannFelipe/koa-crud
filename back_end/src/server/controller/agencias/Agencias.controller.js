@@ -6,7 +6,19 @@ const prisma = new PrismaClient()
 
 
 routes.get("/api/v1/agencias", async (ctx) => {
-    const agencias = await prisma.agencia_bancaria.findMany()
+    let agencias
+    const query = ctx.query
+
+
+    if(query.inicio != null && query.total != null)
+    {
+        agencias = await prisma.agencia_bancaria.findMany({
+            skip: parseInt(query.inicio),
+            take: parseInt(query.total)
+        })
+    }else {
+        agencias = await prisma.agencia_bancaria.findMany()
+    }
     ctx.body = toJson(agencias)
 })
 
