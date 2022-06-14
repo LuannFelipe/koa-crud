@@ -107,11 +107,8 @@ const Bancos= ({ data}) => {
 
         </>
 
-    );
-};
-
-
-
+    )
+}
 async function deletar(id)
 {
 
@@ -137,4 +134,4 @@ function verificarId(id,data)
 }
 
 
-export default Bancos;
+export default Bancos

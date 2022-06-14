@@ -15,7 +15,6 @@ const server = new Koa()
 require('koa-validate')(server)
 
 server.use(logger())
-
 server.use(bodyParser());
 server.use(cors());
 server.use(bancoRoute.routes())

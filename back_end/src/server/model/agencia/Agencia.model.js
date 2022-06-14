@@ -20,7 +20,7 @@ class Agencia{
                 agencia: this.agencia,
                 banco: {
                     connect: {
-                        id: parseInt(this.banco),
+                            id: parseInt(this.banco),
                     }
                 },
                 nome_agencia: this.nome,
