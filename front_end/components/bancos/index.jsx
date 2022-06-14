@@ -2,11 +2,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {useEffect, useState} from "react";
 import useBancos from "../hooks/bancos/usaBancos";
-import {wait} from "next/dist/build/output/log";
-import {usePagination} from "react-use-pagination";
 
 const Bancos= ({ data}) => {
     const { feachtBancos, bancos } = useBancos(20)
+
+   const [deletou, setDeletou] = useState(0)
 
     useEffect(() => {
        feachtBancos(1)
@@ -16,9 +16,22 @@ const Bancos= ({ data}) => {
 
     useEffect(()=>{
         if(pagina <= 0)
+        {
             setPagina(1)
-        feachtBancos(pagina)
+        }else {
+            feachtBancos(pagina)
+        }
+
     },[pagina])
+
+    useEffect(()=>{
+       if(deletou === 1) {
+           feachtBancos(pagina)
+           setDeletou(0)
+       }
+    },[deletou])
+
+
 
     const router = useRouter()
     return(
@@ -79,9 +92,9 @@ const Bancos= ({ data}) => {
                                     <input type="button" value="remover" className="btn bg-opacity-25 bg-secondary" onClick={ () => {
 
                                         deletar(banco.id)
+                                        setDeletou(1)
+                                        alert("banco deletado")
 
-
-                                        //router.reload(window.location.pathname)
                                     }}/>
 
                                 </td>
