@@ -1,8 +1,20 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import usaAgencia from "../hooks/agencias/usaAgencia";
+import {useEffect} from "react";
+import useBancos from "../hooks/bancos/usaBancos";
 
-const Agencia= ({ data: agencias, bancos }) => {
+const Agencia= () => {
     const router = useRouter()
+
+    const {agencia, fetchAgencias} = usaAgencia(20)
+    const {bancos, feachtBancos} = useBancos(20)
+
+    useEffect(()=>{
+        fetchAgencias(1)
+        feachtBancos(1)
+    },[])
+
     return (
         <>
             <div>
@@ -41,7 +53,7 @@ const Agencia= ({ data: agencias, bancos }) => {
                     </tr>
                     </thead>
                     <tbody className="bg-secondary bg-opacity-25">
-                    { agencias.map((agencia) => {
+                    { agencia.map((agencia) => {
                         return (
                             <tr key={agencia}>
                                 <td className="text-center">{agencia.id}</td>
