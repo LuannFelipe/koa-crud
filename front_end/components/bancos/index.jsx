@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import {useEffect, useState} from "react";
 import useBancos from "../hooks/bancos/usaBancos";
 
-const Bancos= ({ data}) => {
+const Bancos = () => {
     const { feachtBancos, bancos } = useBancos(20)
 
    const [deletou, setDeletou] = useState(0)
