@@ -1,18 +1,38 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import usaAgencia from "../hooks/agencias/usaAgencia";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import useBancos from "../hooks/bancos/usaBancos";
 
-const Agencia= () => {
+const Agencia= ({ bancos }) => {
     const router = useRouter()
 
     const {agencia, fetchAgencias} = usaAgencia(20)
-    const {bancos, feachtBancos} = useBancos(20)
+
+    const [deletou, setDeletou] = useState(0)
+
+    const [pagina, setPagina] = useState(1)
+
+    useEffect(()=>{
+        if(pagina <= 0)
+        {
+            setPagina(1)
+        }else {
+            fetchAgencias(pagina)
+        }
+
+    },[pagina])
+
+    useEffect(()=>{
+        if(deletou === 1) {
+            fetchAgencias(pagina)
+            setDeletou(0)
+        }
+    },[deletou])
+
 
     useEffect(()=>{
         fetchAgencias(1)
-        feachtBancos(1)
     },[])
 
     return (
@@ -23,6 +43,11 @@ const Agencia= () => {
                 </div>
                 <div className="d-flex justify-content-between mb-2">
                     <Link href='/agencia/cadastrar'><input type="button" value="adicionar" className="btn bg-secondary bg-opacity-25" /></Link>
+                    <div className="d-flex">
+                        <input type="button" value="<" onClick={()=>setPagina(pagina-1)} className="border-0 bg-transparent"/>
+                        <div className="mx-3">{pagina}</div>
+                        <input type="button" value=">" onClick={()=>setPagina(pagina+1)} className="border-0 bg-transparent"/>
+                    </div>
                     <div>
                         <label>procurar: <input type="text" placeholder="id" id="id" className="mx-1"/></label>
                         <input type="button" value="ver" className="btn bg-secondary bg-opacity-25" onClick={() => {
@@ -62,13 +87,15 @@ const Agencia= () => {
                                 <td className="text-center">{agencia.fone == null ? <>vazio</> : agencia.fone}</td>
                                 <td className="text-center">{agencia.fone1 == null ? <>vazio</> : agencia.fone1}</td>
                                 <td className="text-center">{agencia.endereco}</td>
-                                <td className="text-center">{agencia.agencia}</td>
+                                <td className="text-center">{agencia.agencia === "" ? <>vazio</> : agencia.agencia}</td>
                                 <td key={agencia.id}>
                                     <input type="button" value="ver" className="btn bg-opacity-25 bg-secondary me-2" onClick={() => {
                                         router.push(`/agencia/${agencia.id}`)
                                     }}/>
                                     <input type="button" value="remover" className="btn bg-secondary bg-opacity-25" onClick={() => {
                                         deletar(agencia.id)
+                                        setDeletou(1)
+                                        alert("agencia deletada")
                                         //router.reload(window.location.pathname)
                                     }}/></td>
                             </tr>
