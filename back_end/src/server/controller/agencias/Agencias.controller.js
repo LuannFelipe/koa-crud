@@ -30,7 +30,9 @@ routes.get("/api/v1/agencias", async (ctx) => {
                 //banco
                 agencias = await prisma.agencia_bancaria.findMany({
                     orderBy:{
-                        id_banco: 'asc'
+                        banco:{
+                            nome: 'asc'
+                        }
                     },
                     skip: parseInt(query.inicio),
                     take: parseInt(query.total),
