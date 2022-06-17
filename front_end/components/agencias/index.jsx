@@ -10,6 +10,8 @@ const Agencia= ({ bancos }) => {
 
     const [deletou, setDeletou] = useState(0)
 
+    const [filtro, setFiltro] = useState(0)
+
     const [pagina, setPagina] = useState(1)
 
 
@@ -18,10 +20,10 @@ const Agencia= ({ bancos }) => {
         {
             setPagina(1)
         }else {
-            fetchAgencias(pagina)
+            fetchAgencias(pagina, filtro)
         }
 
-    },[pagina])
+    },[pagina,filtro])
 
     useEffect(()=>{
         if(deletou === 1) {
@@ -67,13 +69,13 @@ const Agencia= ({ bancos }) => {
                     <caption>Lista de Agências</caption>
                     <thead className="table-dark ">
                     <tr>
-                        <th className="text-left">#</th>
-                        <th className="text-left">nome</th>
-                        <th className="text-center">banco</th>
-                        <th className="text-center">fone</th>
-                        <th className="text-center">fone1</th>
-                        <th className="text-center">endereço</th>
-                        <th className="text-center">agencia</th>
+                        <th className="text-center"><input type="button" value={filtro === 0 ? "# ˅" : "# ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(0)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 1 ? "nome ˅" : "nome ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(1)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 2 ? "banco ˅" : "banco ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(2)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 3 ? "fone ˅" : "fone ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(3)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 4 ? "fone1 ˅" : "fone1 ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(4)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 5 ? "endereço ˅" : "endereço ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(5)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 6 ? "agencia ˅" : "agencia ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(6)}/></th>
                         <th className="text-center"></th>
                     </tr>
                     </thead>
