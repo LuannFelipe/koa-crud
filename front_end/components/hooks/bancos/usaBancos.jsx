@@ -13,7 +13,7 @@ const useBancos= (total) => {
 
     }
     return {
-        feachtBancos: fetchBancos,
+        fetchBancos,
         bancos
     }
 }

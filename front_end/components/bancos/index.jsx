@@ -4,14 +4,14 @@ import {useEffect, useState} from "react";
 import useBancos from "../hooks/bancos/usaBancos";
 
 const Bancos = () => {
-    const { feachtBancos, bancos } = useBancos(20)
+    const { fetchBancos, bancos } = useBancos(20)
 
     const [deletou, setDeletou] = useState(0)
 
     const [filtro, setFiltro] = useState(0)
 
     useEffect(() => {
-       feachtBancos(1)
+        fetchBancos(1)
     },[])
 
    const [pagina, setPagina] = useState(1)
@@ -21,14 +21,14 @@ const Bancos = () => {
         {
             setPagina(1)
         }else {
-            feachtBancos(pagina, filtro)
+            fetchBancos(pagina, filtro)
         }
 
     },[pagina, filtro])
 
     useEffect(()=>{
        if(deletou === 1) {
-           feachtBancos(pagina)
+           fetchBancos(pagina)
            setDeletou(0)
        }
     },[deletou])
