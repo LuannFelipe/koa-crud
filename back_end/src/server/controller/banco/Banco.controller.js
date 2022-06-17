@@ -43,14 +43,12 @@ routes.get("/api/v1/bancos", async (ctx) => {
                     break
                 case '3':
                     //ispd
-                    console.log("AASD")
                     bancos = await prisma.banco.findMany({
                         orderBy:{
                             ispd: 'asc'
                         },
                         skip: parseInt(query.inicio),
                         take: parseInt(query.total),
-
                     })
                     break
             }

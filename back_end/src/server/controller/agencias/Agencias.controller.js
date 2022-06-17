@@ -11,11 +11,80 @@ routes.get("/api/v1/agencias", async (ctx) => {
 
 
     if(query.inicio != null && query.total != null)
+    {if(query.filtro != null && query.filtro >= 1)
     {
+        switch (query.filtro)
+        {
+            case '1':
+                //nome
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        nome_agencia: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+
+                })
+                break
+            case '2':
+                //banco
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        id_banco: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+
+                })
+                break
+            case '3':
+                //fone1
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        fone: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+                })
+                break
+            case '4':
+                //fone2
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        fone1: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+                })
+                break
+            case '5':
+                //endereco
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        endereco: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+                })
+                break
+            case '6':
+                //fone1
+                agencias = await prisma.agencia_bancaria.findMany({
+                    orderBy:{
+                        agencia: 'asc'
+                    },
+                    skip: parseInt(query.inicio),
+                    take: parseInt(query.total),
+                })
+                break
+        }
+    }else {
         agencias = await prisma.agencia_bancaria.findMany({
             skip: parseInt(query.inicio),
             take: parseInt(query.total)
         })
+    }
+
     }else {
         agencias = await prisma.agencia_bancaria.findMany()
     }
