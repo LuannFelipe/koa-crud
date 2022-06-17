@@ -6,7 +6,9 @@ import useBancos from "../hooks/bancos/usaBancos";
 const Bancos = () => {
     const { feachtBancos, bancos } = useBancos(20)
 
-   const [deletou, setDeletou] = useState(0)
+    const [deletou, setDeletou] = useState(0)
+
+    const [filtro, setFiltro] = useState(0)
 
     useEffect(() => {
        feachtBancos(1)
@@ -19,10 +21,10 @@ const Bancos = () => {
         {
             setPagina(1)
         }else {
-            feachtBancos(pagina)
+            feachtBancos(pagina, filtro)
         }
 
-    },[pagina])
+    },[pagina, filtro])
 
     useEffect(()=>{
        if(deletou === 1) {
@@ -70,10 +72,10 @@ const Bancos = () => {
                     <caption>lista de bancos</caption>
                     <thead className="table-dark" >
                     <tr>
-                        <th className="text-center">#</th>
-                        <th className="text-center">nome</th>
-                        <th className="text-center">numero</th>
-                        <th className="text-center">ispd</th>
+                        <th className="text-center"><input type="button" value={filtro === 0 ? "# ˅" : "# ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(0)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 1 ? "nome ˅" : "nome ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(1)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 2 ? "numero ˅" : "numero ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(2)}/></th>
+                        <th className="text-center"><input type="button" value={filtro === 3 ? "ispd ˅" : "ispd ˄"} className="bg-transparent border-0 text-white" onClick={()=>setFiltro(3)}/></th>
                         <th className="text-center"></th>
                     </tr>
                     </thead>
