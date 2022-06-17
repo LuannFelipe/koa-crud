@@ -2,7 +2,7 @@ import {useState} from "react";
 
 const useBancos= (total) => {
     const [bancos, setBancos] = useState([])
-    function feachtBancos(page, filtro)
+    function fetchBancos(page, filtro)
     {
 
         const paginaVirtual = ((page - 1) * total) <= 0 ? 0 : ((page - 1) * total)
@@ -13,7 +13,7 @@ const useBancos= (total) => {
 
     }
     return {
-        feachtBancos,
+        feachtBancos: fetchBancos,
         bancos
     }
 }
