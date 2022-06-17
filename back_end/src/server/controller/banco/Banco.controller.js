@@ -11,14 +11,56 @@ routes.get("/api/v1/bancos", async (ctx) => {
     let bancos
 
     const query = ctx.query
-    console.log(query)
+
 
     if(query.inicio != null && query.total != null)
     {
-        bancos = await prisma.banco.findMany({
-            skip: parseInt(query.inicio),
-            take: parseInt(query.total)
-        })
+        if(query.filtro != null && query.filtro >= 1)
+        {
+            switch (query.filtro)
+            {
+                case '1':
+                    //nome
+                    bancos = await prisma.banco.findMany({
+                        orderBy:{
+                            nome: 'asc'
+                        },
+                        skip: parseInt(query.inicio),
+                        take: parseInt(query.total),
+
+                    })
+                    break
+                case '2':
+                    //numero
+                    bancos = await prisma.banco.findMany({
+                        orderBy:{
+                            numero: 'asc'
+                        },
+                        skip: parseInt(query.inicio),
+                        take: parseInt(query.total),
+
+                    })
+                    break
+                case '3':
+                    //ispd
+                    console.log("AASD")
+                    bancos = await prisma.banco.findMany({
+                        orderBy:{
+                            ispd: 'asc'
+                        },
+                        skip: parseInt(query.inicio),
+                        take: parseInt(query.total),
+
+                    })
+                    break
+            }
+        }else {
+            bancos = await prisma.banco.findMany({
+                skip: parseInt(query.inicio),
+                take: parseInt(query.total)
+            })
+        }
+
     }else {
         bancos = await prisma.banco.findMany()
     }

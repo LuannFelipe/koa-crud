@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import usaAgencia from "../hooks/agencias/usaAgencia";
 import {useEffect, useState} from "react";
-import useBancos from "../hooks/bancos/usaBancos";
 
 const Agencia= ({ bancos }) => {
     const router = useRouter()
@@ -12,6 +11,7 @@ const Agencia= ({ bancos }) => {
     const [deletou, setDeletou] = useState(0)
 
     const [pagina, setPagina] = useState(1)
+
 
     useEffect(()=>{
         if(pagina <= 0)

@@ -14,16 +14,16 @@ services:
       LANG: pt_BR.utf8
     ports:
       - "5440:5432"
-#  pgadmin-compose:
-#    image: dpage/pgadmin4
-#    container_name: pgadmin
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: example@example.com
-#      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
-#    ports:
-#      - "15432:80"
-#    depends_on:
-#      - postgres-compose
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: example@example.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
+    ports:
+      - "15432:80"
+    depends_on:
+      - postgres-compose
   web:
     build: back_end
     command: "npx nodemon node back_end/src/server/App.js"

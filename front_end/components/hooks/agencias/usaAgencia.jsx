@@ -10,6 +10,7 @@ const useBancos= (total) => {
         fetch(`http://localhost:3000/api/v1/agencias?inicio=${paginaVirtual}&total=${total}`).then(res => res.json()).then(data => setAgencia(data)).catch((e) => {
             alert(e)
         })
+
     }
     return {
         fetchAgencias,
