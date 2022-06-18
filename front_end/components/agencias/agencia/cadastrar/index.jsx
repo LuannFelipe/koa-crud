@@ -15,16 +15,16 @@ export default function Casdastrar(){
 
                     <input type="text" id="banco" name="banco" placeholder="id do banco*" className="border-0 border-bottom border-dark" required/>
 
-                    <input type="text" id="fone1" name="fone1" placeholder="telefone" type="number" className="border-0 border-bottom border-dark"/>
+                    <input id="fone1" name="fone1" placeholder="telefone" type="number" className="border-0 border-bottom border-dark"/>
 
-                    <input type="text" id="fone2" name="fone2" placeholder="telefone" type="number" className="border-0 border-bottom border-dark"/>
+                    <input id="fone2" name="fone2" placeholder="telefone" type="number" className="border-0 border-bottom border-dark"/>
 
                     <input type="text" id="endereco" name="endereco" placeholder="endereço*" className="border-0 border-bottom border-dark"/>
 
                     <input type="text" id="agencia" name="agencia" placeholder="agencia" className="border-0 border-bottom border-dark"/>
 
                     <button type="submit" className="btn bg-black text-white col-2">Submit</button>
-                    
+
                 </form>
 
 
