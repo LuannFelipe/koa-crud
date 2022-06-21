@@ -20,7 +20,9 @@ server.use(cors());
 server.use(bancoRoute.routes())
 server.use(agenciaRoute.routes())
 
-server.listen(port,() => {
+
+
+module.exports = server.listen(port,() => {
     console.log(`aberto em http://localhost:${port}`)
 })
 

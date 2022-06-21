@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 2000",
     "dev": "npx nodemon node src/server/App.js"
   },
   "keywords": [],
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.13.0",
+    "chai": "^4.3.6",
     "dotenv": "^16.0.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
@@ -19,10 +20,12 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "koa-validate": "^1.0.7",
+    "mocha": "^10.0.0",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.4"
   },
   "devDependencies": {
+    "chai-http": "^3.0.0",
     "prisma": "^3.13.0"
   },
   "prisma": {
