@@ -10,7 +10,7 @@ function BancoInfo({ banco }) {
 
 export async function getServerSideProps({ query })
 {
-    const res = await fetch(`http://localhost:3000/api/v1/banco/${query.id}`)
+    const res = await fetch(`http://web:3000/api/v1/banco/${query.id}`)
     const banco = await res.json()
 
 

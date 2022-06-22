@@ -14,18 +14,18 @@ services:
       LANG: pt_BR.utf8
     ports:
       - "5440:5432"
-  pgadmin-compose:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: example@example.com
-      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
-    ports:
-      - "15432:80"
-    depends_on:
-      - postgres-compose
+#  pgadmin-compose:
+#    image: dpage/pgadmin4
+#    container_name: pgadmin
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: example@example.com
+#      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
+#    ports:
+#      - "15432:80"
+#    depends_on:
+#      - postgres-compose
   web:
-    build: back_end
+    image: luannfelipe/koa
     command: "npx nodemon node back_end/src/server/App.js"
     container_name: koa
     restart: always
@@ -33,19 +33,17 @@ services:
       - ./:/app
     ports:
       - "3000:3000"
-#  front:
-#    container_name: front
-#    command: npm run dev
-#    build:
-#      context: front_end
-#      dockerfile: Dockerfile
-#    restart: always
-#    environment:
-#      APP_ENV: development
-#    volumes:
-#      - ./:/app
-#    ports:
-#      - "8080:8080"
+  front:
+    container_name: front
+    command: npm run dev
+    image: luannfelipe/next
+    restart: always
+    environment:
+      APP_ENV: development
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
 volumes:
   postgres-data:
     external: true

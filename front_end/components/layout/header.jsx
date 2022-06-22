@@ -17,14 +17,12 @@ export default function Header()
                     <ul className="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton1">
                         <li><Link href="/bancos"><a className="dropdown-item text-white">Bancos</a></Link></li>
                         <li><Link href="/banco/cadastrar"><a className="dropdown-item text-white">Adicionar banco</a></Link></li>
-                        <li><Link href="/banco/cadastrar"><a className="dropdown-item text-white">ver banco</a></Link></li>
                     </ul>
 
                     <button className="bg-transparent border-0 text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">agencias</button>
                     <ul className="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton1">
                         <li><Link href="/agencias"><a className="dropdown-item text-white">Agencias</a></Link></li>
                         <li><Link href="/agencia/cadastrar"><a className="dropdown-item text-white">Adicionar agencias</a></Link></li>
-                        <li><Link href="/agencia/cadastrar"><a className="dropdown-item text-white">ver agencia</a></Link></li>
                     </ul>
 
                 </div>

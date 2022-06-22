@@ -88,6 +88,7 @@ routes.post("/api/v1/novoBanco",  (ctx) => {
         const novoBancoObj = ctx.request.body
         const banco = new Banco(novoBancoObj.nome,novoBancoObj.numero,novoBancoObj.ispd)
         banco.criar();
+        ctx.redirect(`http://localhost:8080/bancos`)
     }
 })
 

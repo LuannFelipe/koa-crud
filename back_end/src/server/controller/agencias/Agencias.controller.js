@@ -1,5 +1,5 @@
 const Router = require("koa-router")
-const routes = new Router();
+const routes = new Router()
 const { PrismaClient } = require('@prisma/client')
 const Agencia = require("../../model/agencia/Agencia.model");
 const prisma = new PrismaClient()
@@ -119,6 +119,7 @@ routes.post("/api/v1/novoAgencia", (ctx) => {
                                     novaAgenciaOBJ.fone1,novaAgenciaOBJ.fone2,
                                     novaAgenciaOBJ.agencia, novaAgenciaOBJ.endereco)
         agencia.criar();
+        ctx.redirect(`http://localhost:8080/agencias`)
     }
 
 })

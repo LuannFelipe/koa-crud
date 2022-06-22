@@ -27,8 +27,5 @@
   "devDependencies": {
     "chai-http": "^3.0.0",
     "prisma": "^3.13.0"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
   }
 }

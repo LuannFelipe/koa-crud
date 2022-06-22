@@ -54,7 +54,7 @@ const Agencia= ({ bancos }) => {
                         <label>procurar: <input type="text" placeholder="id" id="id" className="mx-1"/></label>
                         <input type="button" value="ver" className="btn bg-secondary bg-opacity-25" onClick={() => {
                             const id = pegarId()
-                            const existe = verificarId(id, agencias)
+                            const existe = verificarId(id, agencia)
 
                             if(existe)
                                 router.push(`/agencia/${id}`)
