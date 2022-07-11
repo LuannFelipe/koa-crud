@@ -43,18 +43,18 @@ services:
     depends_on:
       - postgres-compose
 
-  front:
-#    container_name: front
-    build: front_end
-    command: npm run dev
-    image: luannfelipe/next
-    restart: always
-    environment:
-      APP_ENV: development
-    volumes:
-      - ./:/app
-    ports:
-      - "8080:8080"
+#  front:
+##    container_name: front
+#    build: front_end
+#    command: npm run dev
+#    image: luannfelipe/next
+#    restart: always
+#    environment:
+#      APP_ENV: development
+#    volumes:
+#      - ./:/app
+#    ports:
+#      - "8080:8080"
 networks:
   network:
     driver: bridge
