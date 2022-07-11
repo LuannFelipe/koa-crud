@@ -1,5 +1,19 @@
 version: "3.9"
 services:
+  web:
+#    image: luannfelipe/koa
+    build: back_end
+    command: "npx nodemon node back_end/src/server/App.js"
+    container_name: server
+    depends_on:
+      - postgres-compose
+    ports:
+      - 3000:3000
+    volumes:
+       - .:/usr/src/app/
+    working_dir: /usr/src/app/
+    networks:
+      - network
   postgres-compose:
     container_name: postgres
     image: postgres:12.4-alpine
@@ -14,27 +28,24 @@ services:
       LANG: pt_BR.utf8
     ports:
       - "5440:5432"
-#  pgadmin-compose:
-#    image: dpage/pgadmin4
-#    container_name: pgadmin
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: example@example.com
-#      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
-#    ports:
-#      - "15432:80"
-#    depends_on:
-#      - postgres-compose
-  web:
-    image: luannfelipe/koa
-    command: "npx nodemon node back_end/src/server/App.js"
-    container_name: koa
-    restart: always
-    volumes:
-      - ./:/app
+    networks:
+      network:
+        aliases:
+          - postgresdb
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: example@example.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin1234
     ports:
-      - "3000:3000"
+      - "15432:80"
+    depends_on:
+      - postgres-compose
+
   front:
-    container_name: front
+#    container_name: front
+    build: front_end
     command: npm run dev
     image: luannfelipe/next
     restart: always
@@ -44,6 +55,10 @@ services:
       - ./:/app
     ports:
       - "8080:8080"
+networks:
+  network:
+    driver: bridge
+
 volumes:
   postgres-data:
     external: true

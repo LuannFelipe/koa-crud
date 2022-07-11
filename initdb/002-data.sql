@@ -108,8 +108,7 @@ ALTER SEQUENCE public.auditlog_id_seq OWNED BY public.auditlog.id;
 CREATE TABLE public.banco (
     id integer NOT NULL,
     nome text NOT NULL,
-    numero text,
-    ispd integer
+    numero text
 );
 
 
